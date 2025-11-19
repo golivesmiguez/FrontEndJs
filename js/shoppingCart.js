@@ -1,0 +1,358 @@
+function cargarCarrito(){
+   const listaPedidos = JSON.parse(localStorage.getItem('carrito')) || [];
+   const mainCart = document.querySelector('main');
+   mainCart.innerHTML = '';
+   let sumCompra = 0;
+   if(listaPedidos.length){
+      let pedidos = document.createElement('section');
+      let solapaPedidos = document.createElement('div');
+      solapaPedidos.classList.add('solapaPedidos');
+      let h2Pedidos = document.createElement('h2');
+      let trashCarrito = document.createElement('span');
+      trashCarrito.classList.add('botonEliminarItemPedido');
+      let pedido = document.createElement('div');
+      pedidos.classList.add('pedidos');
+      h2Pedidos.innerText = 'MI CARRITO';
+      trashCarrito.innerHTML = '<i class="fa-solid fa-trash"></i>';
+      pedido.classList.add('div');
+      mainCart.appendChild(pedidos);
+      pedidos.appendChild(solapaPedidos);
+      solapaPedidos.appendChild(h2Pedidos);
+      solapaPedidos.appendChild(trashCarrito);
+      pedidos.appendChild(pedido);
+      for(let i=0; i<listaPedidos.length; i++){
+         console.log(listaPedidos[i].packsPresentaciones.length);
+         const fechaPedido = new Date().toISOString();
+         let itemPedido = document.createElement('article');
+         itemPedido.classList.add('articuloCarrito');
+         itemPedido.style.color = 'brown';
+         itemPedido.style.backgroundColor = listaPedidos[i].cardColor;
+         pedido.appendChild(itemPedido);
+         let h3Producto = document.createElement('h3');
+         h3Producto.classList.add('h3Producto');
+         h3Producto.setAttribute('id', listaPedidos[i].fechaPedido);
+         h3Producto.innerText = listaPedidos[i].productoNombre.toUpperCase();
+         itemPedido.appendChild(h3Producto);
+         let imagenProducto = document.createElement('img');
+         imagenProducto.setAttribute('src', listaPedidos[i].productoRutaImagen);
+         imagenProducto.setAttribute('widht', listaPedidos[i].productoAnchoImagen/2);
+         imagenProducto.setAttribute('height', listaPedidos[i].productoAltoImagen/2);
+         imagenProducto.setAttribute('alt', listaPedidos[i].productoNombre);
+         imagenProducto.style.borderRadius = '5px';
+         let contenedorDescripcionItem = document.createElement('div');
+         contenedorDescripcionItem.classList.add('contenedorDescripcionItem');
+         if(!listaPedidos[i].mostrarDescripcion){
+            imagenProducto.style.display = 'block';
+            contenedorDescripcionItem.style.display = 'none';
+         }
+         else{
+            imagenProducto.style.display = 'none';
+            contenedorDescripcionItem.style.display = 'flex';
+         }
+         itemPedido.appendChild(imagenProducto);
+         itemPedido.appendChild(contenedorDescripcionItem);
+         let descripcionItem = document.createElement('p');
+         descripcionItem.classList.add('descripcionItem');
+         descripcionItem.innerText = listaPedidos[i].productoDescripcion;
+         contenedorDescripcionItem.appendChild(descripcionItem);
+         let eliminarItem = document.createElement('span');
+         eliminarItem.classList.add('botonEliminarItemPedido');
+         eliminarItem.innerHTML = '<i class="fa-solid fa-trash"></i>';
+         eliminarItem.style.backgroundColor = listaPedidos[i].cardColor;
+         itemPedido.appendChild(eliminarItem);
+         let valorCompra = document.createElement('div');
+         valorCompra.classList.add('valorCompra');
+         itemPedido.appendChild(valorCompra);
+         let contenedorCant = document.createElement('div');
+         contenedorCant.classList.add('contenedorCant');
+         let labelCantProd = document.createElement('label');
+         labelCantProd.setAttribute('for', fechaPedido);
+         labelCantProd.innerText = 'Cantidad';
+         labelCantProd.style.fontSize = '12px';
+         let cantProd = document.createElement('input');
+         cantProd.classList.add('cantProd');
+         cantProd.setAttribute('type', 'number');
+         cantProd.setAttribute('min', '1');
+         cantProd.setAttribute('max', '999');
+         cantProd.setAttribute('name', 'cantidadProd');
+         cantProd.setAttribute('id', fechaPedido);
+         cantProd.style.backgroundColor = listaPedidos[i].cardColor;
+         cantProd.setAttribute('value', listaPedidos[i].productoCantidad);
+         let botonCant = document.createElement('button');
+         botonCant.setAttribute('type', 'button');
+         botonCant.innerHTML = '<i class="fa-solid fa-cart-shopping redB"></i>';
+         let contenedorPack = document.createElement('div');
+         contenedorPack.classList.add('contenedorPack');
+         let namePack = document.createElement('span');
+         let selPack = document.createElement('select');
+         selPack.classList.add('selPack');
+         selPack.setAttribute('name', 'presentacion');
+         selPack.style.backgroundColor = listaPedidos[i].cardColor;
+         namePack.innerText = 'Pack';
+         let precioCompra = document.createElement('h2');
+         precioCompra.style.color = 'black';
+         sumCompra = sumCompra + listaPedidos[i].productoCompra;
+         precioCompra.innerHTML = `<small>$</small>${listaPedidos[i].productoCompra.toLocaleString('es-ES')}`;
+         let precioKilo = document.createElement('p');
+         precioKilo.innerText = `($${listaPedidos[i].productoPrecio.toLocaleString('es-ES')} x Kg)`;
+         precioKilo.style.fontSize = '9px';
+         valorCompra.appendChild(contenedorPack);
+         contenedorPack.appendChild(namePack);
+         contenedorPack.appendChild(selPack);
+         for(let j=0; j<listaPedidos[i].packsPresentaciones.length; j++){
+            let optPack = document.createElement('option');
+            optPack.classList.add('optPack');
+            optPack.setAttribute('value', listaPedidos[i].packsPresentaciones[j]);
+            optPack.innerText = `${listaPedidos[i].packsPresentaciones[j]} Kg`;
+            if(listaPedidos[i].productoPresentacion == listaPedidos[i].packsPresentaciones[j]){
+               optPack.setAttribute('selected', '');
+            }
+            selPack.appendChild(optPack);
+         }
+         valorCompra.appendChild(labelCantProd);
+         valorCompra.appendChild(contenedorCant);
+         contenedorCant.appendChild(cantProd);
+         contenedorCant.appendChild(botonCant);
+         valorCompra.appendChild(precioCompra);
+         valorCompra.appendChild(precioKilo);
+      }
+      h2Pedidos.innerHTML = `MI CARRITO: <small>$</small>${sumCompra.toLocaleString('es-ES')}`;
+      h2Pedidos.style.color = 'black';
+      const eliminarProductoPedido = document.querySelector('.pedidos .div');
+      eliminarProductoPedido.addEventListener('click', (event)=>{
+         const itemClick = event.target;
+         if(itemClick.tagName == 'I'){
+            const listaPedidos = JSON.parse(localStorage.getItem('carrito')) || [];
+            for(let i=0; i<listaPedidos.length; i++){
+               if(listaPedidos[i].fechaPedido == itemClick.parentNode.parentNode.querySelector('h3').id){
+                  listaPedidos.splice(i, 1);
+               }
+         }
+         localStorage.setItem('carrito', JSON.stringify(listaPedidos));
+         cargarCarrito();
+         contarCarrito();
+         }
+      });
+      const mostrarDescripcion = document.querySelector('.pedidos .div');
+      mostrarDescripcion.addEventListener('click', (event)=>{
+         const mostrarClick = event.target;
+         if(mostrarClick.tagName == 'H3'){
+            const listaPedidos = JSON.parse(localStorage.getItem('carrito')) || [];
+            for(let i=0; i<listaPedidos.length; i++){
+               if(listaPedidos[i].productoNombre == mostrarClick.parentNode.querySelector('img').getAttribute('alt')){
+                  console.log(listaPedidos[i].productoNombre, listaPedidos[i].mostrarDescripcion);
+                  if(!listaPedidos[i].mostrarDescripcion){
+                     mostrarClick.parentNode.querySelector('img').style.display = 'none';
+                     mostrarClick.parentNode.querySelector('.contenedorDescripcionItem').style.display = 'flex';
+                     listaPedidos[i].mostrarDescripcion = true;
+                     localStorage.setItem('carrito', JSON.stringify(listaPedidos));
+                  }
+                  else{
+                     mostrarClick.parentNode.querySelector('img').style.display = 'block';
+                     mostrarClick.parentNode.querySelector('.contenedorDescripcionItem').style.display = 'none';
+                     listaPedidos[i].mostrarDescripcion = false;
+                     localStorage.setItem('carrito', JSON.stringify(listaPedidos));
+                  }
+               }
+            }
+      }
+      })
+
+      const eliminarPedido = document.querySelector('.solapaPedidos');
+      eliminarPedido.addEventListener('click', (event)=>{
+         const itemClick = event.target;
+         if(itemClick.tagName == 'I'){
+            localStorage.removeItem('carrito');
+            cargarCarrito();
+            contarCarrito();
+         }
+      });
+      const modificarPedido = document.querySelector('.pedidos .div');
+      modificarPedido.addEventListener('click', (event)=>{
+         const formClick = event.target;
+         const cantItem = parseInt(formClick.parentNode.parentNode.parentNode.querySelector('input').value);
+         if(formClick.classList.contains('redB') && cantItem>=1 && cantItem<=999){
+            const packItem = formClick.parentNode.parentNode.parentNode.parentNode.querySelector('select').value;
+            console.log(packItem);
+            const idItem = formClick.parentNode.parentNode.parentNode.parentNode.querySelector('h3').id;
+            console.log(idItem, cantItem);
+            const listaPedidos = JSON.parse(localStorage.getItem('carrito')) || [];
+            for(let i=0; i<listaPedidos.length; i++){
+               if(listaPedidos[i].fechaPedido == idItem){
+                  listaPedidos[i].productoCantidad = cantItem;
+                  listaPedidos[i].productoPresentacion = packItem;
+                  listaPedidos[i].productoCompra = packItem * listaPedidos[i].productoPrecio * cantItem;
+               }
+            }
+            localStorage.setItem('carrito', JSON.stringify(listaPedidos));
+            cargarCarrito();
+            contarCarrito();
+         }
+
+
+
+
+      });
+
+   }
+   else{
+   let pedidos = document.createElement('section');
+   let solapaPedidos = document.createElement('div');
+   solapaPedidos.classList.add('solapaPedidos');
+   let h2Pedidos = document.createElement('h2');
+   let pedido = document.createElement('div');
+   pedidos.classList.add('pedidos');
+   pedidos.innerHTML = '<p>No hay compras en tu carrito</p>';
+   h2Pedidos.innerHTML = 'MI CARRITO: <small>$</small>0,00';
+   h2Pedidos.style.color = 'brown';
+   pedido.classList.add('div');
+   mainCart.appendChild(pedidos);
+   pedidos.appendChild(solapaPedidos);
+   solapaPedidos.appendChild(h2Pedidos);
+   pedidos.appendChild(pedido);
+   }
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+   cargarCarrito();
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//--------------------------------------------------------------------------------------------------------------------//
+
+
+// function contarCarrito() {
+//    const listaPedidos = JSON.parse(localStorage.getItem('carrito')) || [];
+//    return listaPedidos.length
+// }
+
+// contarCarrito();
+// const numCarrito = document.querySelector('.counterCarrito sub');
+// numCarrito.innerText = contarCarrito();
+
+// function vaciarCarrito(){
+//    let mainCart = document.querySelector('main');
+//    mainCart.innerHTML = '';
+// }
+
+// const listaPedidos = JSON.parse(localStorage.getItem('carrito')) || [];
+// const mainCart = document.querySelector('main');
+// mainCart.innerHTML = '';
+// let sumCompra = 0;
+// if(listaPedidos.length){
+//    let pedidos = document.createElement('section');
+//    let h2Pedidos = document.createElement('h2');
+//    let pedido = document.createElement('div');
+//    pedidos.classList.add('pedidos');
+//    h2Pedidos.classList.add('h2');
+//    h2Pedidos.innerText = 'MI CARRITO';
+//    pedido.classList.add('div');
+//    mainCart.appendChild(pedidos);
+//    pedidos.appendChild(h2Pedidos);
+//    pedidos.appendChild(pedido);
+//    for(let i=0; i<listaPedidos.length; i++){
+//       let itemPedido = document.createElement('article');
+//       itemPedido.classList.add('articuloCarrito');
+//       itemPedido.setAttribute('id', listaPedidos[i].fechaPedido);
+//       itemPedido.style.backgroundColor = listaPedidos[i].cardColor;
+//       pedido.appendChild(itemPedido);
+//       let h3Producto = document.createElement('h3');
+//       h3Producto.innerText = listaPedidos[i].productoNombre.toUpperCase();
+//       itemPedido.appendChild(h3Producto);
+//       let imagenProducto = document.createElement('img');
+//       imagenProducto.setAttribute('src', listaPedidos[i].productoRutaImagen);
+//       imagenProducto.setAttribute('widht', listaPedidos[i].productoAnchoImagen/2);
+//       imagenProducto.setAttribute('height', listaPedidos[i].productoAltoImagen/2);
+//       itemPedido.appendChild(imagenProducto);
+//       let eliminarItem = document.createElement('span');
+//       eliminarItem.classList.add('botonEliminarItemPedido');
+//       eliminarItem.innerHTML = '<i class="fa-solid fa-trash"></i>';
+//       eliminarItem.style.backgroundColor = listaPedidos[i].cardColor;
+//       itemPedido.appendChild(eliminarItem);
+//       let valorCompra = document.createElement('div');
+//       valorCompra.classList.add('valorCompra');
+//       itemPedido.appendChild(valorCompra);
+//       let pack = document.createElement('p');
+//       pack.innerText = `Pack de ${listaPedidos[i].productoPresentacion} kg x ${listaPedidos[i].productoCantidad}`;
+//       let precioCompra = document.createElement('h4');
+//       sumCompra = sumCompra + listaPedidos[i].productoCompra;
+//       precioCompra.innerText = `$${listaPedidos[i].productoCompra.toLocaleString('es-ES')}`;
+//       valorCompra.appendChild(pack);
+//       valorCompra.appendChild(precioCompra);
+//    }
+//    h2Pedidos.innerText = `MI CARRITO: $${sumCompra.toLocaleString('es-ES')}`;
+//    }
+// else{
+//    let pedidos = document.createElement('section');
+//    let h2Pedidos = document.createElement('h2');
+//    let pedido = document.createElement('div');
+//    pedidos.classList.add('pedidos');
+//    pedidos.innerHTML = '<p>No hay compras en tu carrito</p>';
+//    h2Pedidos.classList.add('h2');
+//    h2Pedidos.innerText = 'MI CARRITO: $0,00';
+//    pedido.classList.add('div');
+//    mainCart.appendChild(pedidos);
+//    pedidos.appendChild(h2Pedidos);
+//    pedidos.appendChild(pedido);
+// }
+
+
+
+
+// document.addEventListener('DOMContentLoaded', function () {
+//     cargarCarrito();
+// });
+
+
+
+// // Vaciar carrito
+// document.getElementById('vaciar-carrito').addEventListener('click', function () {
+//         localStorage.removeItem('carrito');
+//         cargarCarrito();
+//     });
+
+
+

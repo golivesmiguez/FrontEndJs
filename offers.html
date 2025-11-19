@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="icon" type="image/png" href="./img/favicon/favicon-16x16.png">
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>offers</title>
+</head>
+<body>
+    <header>
+        <a class="logo" href="./index.html"><img src="./img/logo.jpg" width="70" alt="logo"></a>
+        <div id="divH1" class="h1">
+            <h1 id="titulo">TIENDA TRES PRODUCTOS</h1>
+            <form class="search" id="search" action="./index.html" method="get">
+                <input class="" type="search" name="search" value="" placeholder="TIENDA TRES PRODUCTOS" id="textSearch" size="">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+        </div>
+        <div class="toggle">
+            <div class="claroOscuro" id="boton-claroOscuro"><i class="fa-solid fa-moon"></i></div>
+            <div class="tituloBusqueda" id="boton-tituloBusqueda"><i class="fa-solid fa-magnifying-glass"></i></div>
+        </div>
+        <nav class="nav">
+            <ul class="navlist">
+                <li><a href="./index.html#categorias">Productos</a>
+                    <ul class="dropdown-content">
+                        <li><a href="./index.html#aceites">Aceites</a></li>
+                        <li><a href="./index.html#frutosSecos">FrutosSecos</a></li>
+                        <li><a href="./index.html#semillas">Semillas</a></li>
+                    </ul>
+                </li>
+                <li><a href="./index.html#aceites">Aceites</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">Aguacate</a></li>
+                        <li><a href="#">Algodón</a></li>
+                        <li><a href="#">Almendra</a></li>
+                        <li><a href="#">Arroz</a></li>
+                        <li><a href="#">Calabaza</a></li>
+                        <li><a href="#">Cártamo</a></li>
+                        <li><a href="#">Chía</a></li>
+                        <li><a href="#">Coco</a></li>
+                        <li><a href="#">Lino</a></li>
+                        <li><a href="#">Oliva</a></li>
+                        <li><a href="#">Sésamo</a></li>
+                        <li><a href="#">Uva</a></li>
+                    </ul>
+                </li>
+                <li><a href="./index.html#frutosSecos">FrutosSecos</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">Almendra</a></li>
+                        <li><a href="#">Anacardo</a></li>
+                        <li><a href="#">Avellana</a></li>
+                        <li><a href="#">Bellota</a></li>
+                        <li><a href="#">Cacahuete</a></li>
+                        <li><a href="#">Castaña</a></li>
+                        <li><a href="#">Macadamia</a></li>
+                        <li><a href="#">Nuece</a></li>
+                        <li><a href="#">Nuez Brasil</a></li>
+                        <li><a href="#">Nuez Pecan</a></li>
+                        <li><a href="#">Pistacho</a></li>
+                        <li><a href="#">Piñón</a></li>
+                    </ul>
+                </li>
+                <li><a href="./index.html#semillas">Semillas</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">Amapola</a></li>
+                        <li><a href="#">Amaranto</a></li>
+                        <li><a href="#">Calabaza</a></li>
+                        <li><a href="#">Cáñamo</a></li>
+                        <li><a href="#">Chía</a></li>
+                        <li><a href="#">Fenogreco</a></li>
+                        <li><a href="#">Girasol</a></li>
+                        <li><a href="#">Hinojo</a></li>
+                        <li><a href="#">Lino</a></li>
+                        <li><a href="#">Quinoa</a></li>
+                        <li><a href="#">Sésamo</a></li>
+                        <li><a href="#">Trigo Sarraceno</a></li>
+                    </ul>
+                </li>
+                <li><a href="./contact.html">Contacto</a></li>
+                <li><a href="./aboutUs.html">Nosotros</a></li>
+                <li><a class="acaEstoy" href="#">Ofertas</a></li>
+                <li><a href="./login.html">Mi Cuenta</a>
+                    <ul class="dropdown-content">
+                        <li><a href="./login.html">Iniciar Sesión</a></li>
+                        <li><a href="./register.html">Crear Cuenta</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="carrito">
+                        <li class="logoCarrito"><a href="./shoppingCart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                        <li class="counterCarrito"><sub></sub></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="ofertas">
+            <article class="cardOferta" id="almendras">
+                <h2>ALMENDRAS</h2>
+                <img src="./img/frutosSecos/almendras.jpg" width="250" height="140" alt="nueces">
+                <p class="descripcion">Del almendro, y tal como otros frutos secos, la semilla es la parte que se consume, la cual
+                    está envuelta por una película de color canela, además de una cáscara exterior que no es comestible, que
+                    representa un peso importante.</p>
+                <div class="precio">
+                    <span>$</span><p id="valorAlmendra"></p>
+                    <small class="condicionesPrecio">Precio por kilo sin impuestos</small>
+                </div>
+                <form action="#" class="compra" name="aquamarine">
+                    <input class="idProducto" type="hidden" name="id" value="almendras" id="idAlmendra">
+                    <input class="precioProducto" type="hidden" name="precio" value="38.499,50" id="precioAlmendra">
+                    <label for="presentacionAlmendra"></label>
+                    <select name="presentacion" class="presentacion" id="presentacionAlmendra">
+                        <option value="" disabled selected>Pack</option>
+                        <option class="optPresent" value="1">1 Kilo</option>
+                        <option class="optPresent" value="4">4 Kilos</option>
+                        <option class="optPresent" value="8">8 Kilos</option>
+                    </select>
+                    <label for="cantidad"></label>
+                    <input class="cantidadProducto" type="number" min="0" max="999 id="cantidadAlmendra" name="cantidad" placeholder="Cantidad" value="">
+                    <button class="agregar-carrito" type="submit""><i class="fa-solid fa-cart-shopping"></i></button>
+                </form>
+            </article>
+            <article class="cardOferta" id="avellanas">
+                <h2>AVELLANAS</h2>
+                <img src="./img/frutosSecos/avellanas.jpg" width="250" height="140" alt="nueces">
+                <p class="descripcion">Del avellano, del Mediterráneo, con una cáscara leñosa y una semilla
+                    comestible rica en grasas saludables, aminoácidos escenciales, vitaminas y minerales. Consumidos de diversas formas para obtener fibras y antioxidantes.</p>
+                <div class="precio">
+                    <span>$</span><p id="valorAvellana"></p>
+                    <small class="condicionesPrecio">Precio por kilo sin impuestos</small>
+                </div>
+                <form action="#" class="compra" name="aqua">
+                    <input class="idProducto" type="hidden" name="id" value="avellanas" id="idAvellana">
+                    <input class="precioProducto" type="hidden" name="precio" value="28.699,75" id="precioAvellana">
+                    <label for="presentacionAvellana"></label>
+                    <select name="presentacion" class="presentacion" id="presentacionAvellana">
+                        <option  value="" disabled selected>Pack</option>
+                        <option class="optPresent" value="1">1 Kilo</option>
+                        <option class="optPresent" value="3">3 Kilos</option>
+                        <option class="optPresent" value="5">5 Kilos</option>
+                    </select>
+                    <label for="cantidad"></label>
+                    <input class="cantidadProducto" type="number" min="0" max="999 id="cantidadAvellana" name="cantidad" placeholder="Cantidad">
+                    <button class="agregar-carrito" type="submit""><i class="fa-solid fa-cart-shopping"></i></button>
+                </form>
+            </article>
+            <article class="cardOferta" id="nueces">
+                <h2 class=>NUECES</h2>
+                <img src="./img/frutosSecos/nueces.jpg" width="250" height="140" alt="nueces">
+                <p class="descripcion">Del árbol nogal, ricos en grasas saludables, proteínas, antioxidantes y minerales,
+                    que ofrecen beneficios como la salud cardiovascular y cerebral. Se pueden consumir solas,
+                    en ensaladas, postre o como parte de platos salados.</p>
+                <div class="precio">
+                    <span>$</span><p class="valorNuez"></p>
+                    <small class="condicionesPrecio">Precio por kilo sin impuestos</small>
+                </div>
+                <form action="#" class="compra" name="antiquewhite">
+                    <input class="idProducto" type="hidden" name="id" value="nueces" id="idNuez">
+                    <input class="precioProducto" type="hidden" name="precio" value="19.990,25" id="precioNuez">
+                    <label for="presentacionNuez"></label>
+                    <select name="presentacion" class="presentacion" id="presentacionNuez">
+                        <option value="" disabled selected>Pack</option>
+                        <option class="optPresent" value="1">1 Kilo</option>
+                        <option class="optPresent" value="2">2 Kilos</option>
+                        <option class="optPresent" value="5">5 Kilos</option>
+                        <option class="optPresent" value="15">15 Kilos</option>
+                    </select>
+                    <label for="cantidad"></label>
+                    <input class="cantidadProducto" type="number" min="0" max="'999" id="cantidadNuez" name="cantidad" placeholder="Cantidad">
+                    <button class="agregar-carrito" type="submit""><i class="fa-solid fa-cart-shopping"></i></button>
+                </form>
+            </article>
+        </section>
+    </main>
+    <footer id="footer">
+        <div class="redes">
+            <ul>
+                <li><a href="#" class="facebook"><i class="fa-brands fa-facebook"></i></a></li>
+                <li><a href="#" class="instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                <li><a href="#" class="linkedin"><i class="fa-brands fa-linkedin"></i></a></li>
+                <li><a href="#" class="pinterest"><i class="fa-brands fa-pinterest"></i></a></li>
+                <li><a href="#" class="threads"><i class="fa-brands fa-threads"></i></a></li>
+                <li><a href="#" class="tiktok"><i class="fa-brands fa-tiktok"></i></a></li>
+                <li><a href="#" class="twitter"><i class="fa-brands fa-x-twitter"></i></a></li>
+                <li><a href="#" class="youtube"><i class="fa-brands fa-youtube"></i></a></li>
+            </ul>
+        </div>
+        <div class="tyc">
+            <h5 class="lato-regular">TÉRMINOS Y CONDICIONES</h5>
+            <p class="lato-regular">@2025 <strong class="lato-black">Tienda 3prOdUctOs</strong> | Derechos Reservados</p>
+        </div>
+        <div class="chat">
+            <a class="whatsapp" href="https://wa.me/34696035156" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-square-whatsapp"></i></a>
+            <a class="telegram" href="https://t.me/germanolivesES02" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-telegram"></i></a>
+            <div class="upDown">
+                <a class="home" href="#"><i class="fa-solid fa-caret-up"></i></a>
+                <a class="foot" href="#footer"><i class="fa-solid fa-caret-down"></i></a>
+            </div>
+        </div>       
+    </footer>
+    <script src="./js/index.js"></script>
+    <script src="./js/offers.js"></script>
+</body>
+</html>
